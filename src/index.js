@@ -20,9 +20,6 @@ import init, {
 import Accounting from "./accounting";
 import Dashboard from "./dashboard";
 import Record from "./record";
-import Login from "./login";
-import Register from "./register";
-
 init();
 
 render(
@@ -42,8 +39,6 @@ render(
                     }
                 />
                 <Route path="record" element={<Record />} />
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/register" element={<Register />}></Route>
             </Route>
         </Routes>
     </BrowserRouter>,
