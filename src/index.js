@@ -1,17 +1,53 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useEffect, useMemo, useState } from "react";
+import ReactDOM, { render } from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Nav from "./component/nav";
+import { web_style } from "./component/btn";
+import Note from "./note";
+import { ThemeProvider } from "@emotion/react";
+import theme from "./component/theme";
+import Item from "./item";
+import init, {
+    noteData,
+    itemData,
+    itemCol,
+    accountingCol,
+    accountingData,
+} from "./init";
+import Accounting from "./accounting";
+import Dashboard from "./dashboard";
+import Record from "./record";
+import Login from "./login";
+import Register from "./register";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+init();
+
+render(
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Nav />}>
+                <Route path="" element={<Dashboard />} />
+                <Route path="note" element={<Note data={noteData} />} />
+                <Route
+                    path="item"
+                    element={<Item data={itemData} col={itemCol} />}
+                />
+                <Route
+                    path="accounting"
+                    element={
+                        <Accounting data={accountingData} col={accountingCol} />
+                    }
+                />
+                <Route path="record" element={<Record />} />
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/register" element={<Register />}></Route>
+            </Route>
+        </Routes>
+    </BrowserRouter>,
+    document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+web_style();
