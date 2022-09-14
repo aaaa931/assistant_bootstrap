@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# 個人數位助理（早期版本）
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+注意事項：
+舊版本不再更新，<a href="https://github.com/aaaa931/assistant" target="_blank">查看新版本個人數位助理</a>
 
-## Available Scripts
+使用說明：
+* 記事
+    * 在上方輸入待辦事項 Input 輸入後按下 Enter 即可紀錄，在列表中左方 Icon 為是否完成狀態，填滿代表已完成，反之則未完成，可透過編輯與刪除 Button 進行編輯刪除，刪除時不會進行確定動作，請留意。
+* 記帳
+    * 包含首頁、項目、記帳、紀錄頁面，首頁以 Chart.js 顯示出當月的記帳圖表，用於快速了解當月支出結構，記帳前需在項目登陸項目才能進行記帳，目的是快速記帳，記帳使用登陸項目時提供的編號進行登記，輸入編號與日期送出後即可記帳，紀錄可查看過往所有紀錄，以上三個頁面均有排序功能。
+<pre>
+使用技術：React、Bootstrap、Chart.js、Emotion.js、React-table.js
+資料存儲：localStorage
+</pre>
 
-In the project directory, you can run:
+## 檔案架構
 
-### `npm start`
+<pre>
+component（通用 component）
+|-- btn.js
+|-- form.js
+|-- nav.js
+|-- table.js
+|-- task.js
+|-- theme.js
+頁面 component、頁面 slice
+index.css
+</pre>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 通用（index.js、init.js、component/btn.js、component/form.js、component/nav.js、component/table.js、component/theme.js）
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* index
+    * 根據對應 path 導向各頁面
+* init
+    * 初始資料設定
+* btn
+    * 切換模式的 Button，根據 localStorage 在網站開啟時自動切換至上次使用的主題
+* form
+    * 存放各種會運用在 form 的 component
+* nav
+    * 網站的導覽列
+* table
+    * 存放 table component，擁有排序功能
+* theme
+    * 所有 styled component 主題設定檔
 
-### `npm test`
+### 首頁（dashboard.js）
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+接收資料回傳給 Chart.js 產生出圖表
 
-### `npm run build`
+### 記事（note.js、component/task.js）
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* task
+    * 記事列表 component，根據 edit state 是否為 true 呈現編輯中的 view 或一般的 view
+* note
+    * 組合所有記事頁面 components，包含從 localStorage 接收資料邏輯
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 項目（item.js）
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* item
+    * 組合所有項目頁面 components，包含從 localStorage 接收資料邏輯
 
-### `npm run eject`
+### 記帳（accounting.js）
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* accounting
+    * 組合所有記帳頁面 components，包含從 localStorage 接收資料邏輯
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 紀錄（record.js）
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* record
+    * 組合所有紀錄頁面 components，包含從 localStorage 接收資料邏輯
